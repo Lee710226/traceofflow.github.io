@@ -355,3 +355,4 @@ img {
     margin: 0;                        /* 由格線對齊 */
   }
 }
+.figure_1 img { width: clamp(140px, 40vw, 240px) !important; }
