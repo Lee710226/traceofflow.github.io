@@ -592,3 +592,65 @@ header nav ul.nav li a:hover {
     margin-top: 10px;
   }
 }
+/* ===== 桌機：LOGO 左、選單靠右 ===== */
+header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+header > *:first-child { margin-right: auto; }   /* h1 在左，其餘推到右邊 */
+header nav ul.nav {
+  display: flex;
+  gap: 16px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== 手機：去左右邊框 + 菜單改直排靠右 ===== */
+@media (max-width: 768px) {
+  /* 1) 移除版心左右內距（gutter 的來源） */
+  main, section, .container, .wrap {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* 2) Header 背景滿版，不留左右白邊 */
+  header {
+    flex-direction: column;
+    align-items: flex-end;
+    margin-inline: calc(50% - 50vw); /* 滿版 */
+    width: 100vw;
+    border-radius: 0 !important;
+  }
+  header h1 { align-self: flex-start; margin: 0; }
+
+  /* 3) 菜單直向、靠右 */
+  header nav { width: 100%; }
+  header nav ul.nav {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  /* 4) Hero 區塊與圖片滿版；收掉圓角，避免看起來像邊框 */
+  .hero, .figure_1, .kv {
+    margin-inline: calc(50% - 50vw);
+    width: 100vw;
+    border-radius: 0 !important;
+  }
+  .hero img, .figure_1 img, .kv img {
+    display: block;
+    width: 100vw !important;     /* 直接吃視窗寬 */
+    max-width: none !important;  /* 取消父層限制 */
+    height: auto !important;
+    border-radius: 0 !important; /* 避免四角白邊 */
+  }
+}
+
+/* 全域保險：不要出現水平捲軸；圖片預設不超出父層 */
+html, body { margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; }
+img, video { max-width: 100%; height: auto; display: block; }
