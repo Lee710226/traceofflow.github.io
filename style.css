@@ -213,3 +213,45 @@ nav, .nav, header .nav {
     font-size: 1rem;
   }
 }
+/* --- Mobile nav fix: 強制把菜單改成直向、可換行、置中 --- */
+@media (max-width: 768px) {
+  /* 1) 解除可能的寫死寬度與絕對定位 */
+  nav, .nav, header nav, header .nav,
+  .menu, .menu-wrap, .menu-container, .navbar, .navbar-menu, .site-nav {
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    left: auto !important;
+    right: auto !important;
+  }
+
+  /* 2) 菜單列表改直向堆疊 */
+  nav ul, .nav ul, .menu ul, .navbar ul, .site-nav ul {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 8px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  /* 3) 每個連結做成整行好點擊 */
+  nav li, .nav li, .menu li, .navbar li, .site-nav li { width: 100%; }
+  nav a, .nav a, .menu a, .navbar a, .site-nav a {
+    display: block !important;
+    padding: 12px 14px;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+  }
+
+  /* 4) 讓 nav 容器自己換行、置中 */
+  nav, .nav, header nav, header .nav {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 8px;
+  }
+}
