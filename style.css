@@ -469,3 +469,36 @@ header { padding-top: 1px; }                      /* 最簡單 */
 header { border-top: 1px solid transparent; }     /* 視覺無差 */
 header { overflow: hidden; }                      /* 開 BFC */
 header { display: flow-root; }                    /* 開 BFC，乾淨 */
+/* 1) 基本保險：背景與外距 */
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #F6DDD3;   /* ← 換成你的主底色 */
+}
+
+/* 2) 頁首第一個子元素不要把 header 往下推（避免上方白條） */
+header > *:first-child { margin-top: 0; }
+/* 或開 BFC 擋掉 margin 折疊 */
+header { display: flow-root; }
+
+/* 3) 手機：不要裁掉垂直內容，避免露出白底 */
+@media (max-width: 768px) {
+  body, main, .container, .wrap {
+    overflow-x: hidden !important;
+    overflow-y: visible !important;
+    height: auto !important;
+    background-color: inherit !important;
+  }
+  /* 有圓角/陰影的卡片在手機收掉避免邊緣露底 */
+  header, .hero, .kv, .card, .panel {
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+}
+
+/* 4) 如果你的主視覺（.hero）想要「滿版」不留左右白邊： */
+.hero {
+  margin-inline: calc(50% - 50vw); /* 滿版技巧 */
+  width: 100vw;
+}
+.hero img { width: 100%; height: auto; display: block; }
