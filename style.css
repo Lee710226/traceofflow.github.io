@@ -502,3 +502,35 @@ header { display: flow-root; }
   width: 100vw;
 }
 .hero img { width: 100%; height: auto; display: block; }
+/* 桌機：LOGO 左、菜單靠右水平排列 */
+header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background-color: #B77B6B;  /* ← 換成你的 header 色 */
+}
+header .brand { flex: 0 0 auto; }          /* 你的 LOGO 區塊 class */
+header nav { margin-left: auto; }          /* 重點：把 nav 推到右邊 */
+header nav ul {
+  display: flex;
+  gap: 16px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+header nav a { display: block; padding: 8px 0; text-decoration: none; }
+
+/* 手機：改直向，仍靠右 */
+@media (max-width: 768px) {
+  header { flex-wrap: wrap; }
+  header nav {
+    width: 100%;                 /* 讓 nav 獨佔一行 */
+    margin-left: 0;
+  }
+  header nav ul {
+    flex-direction: column;      /* 直向 */
+    align-items: flex-end;       /* 靠右對齊 */
+    gap: 10px;
+  }
+  header nav li { width: auto; } /* 保持內容寬度 */
+}
