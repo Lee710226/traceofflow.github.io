@@ -456,3 +456,11 @@ body * {
 @supports (selector(:has(*))) {
   body *:has(> *:where(:not(img, video))) { outline: none; }
 }
+/* 移除頁首第一個子元素的上外距 */
+header > :first-child { margin-top: 0; }
+
+/* 若 main 開頭也有標題/區塊，順便保險 */
+main > :first-child { margin-top: 0; }
+
+/* 全域歸零 body 預設外距（保險） */
+html, body { margin: 0; }
