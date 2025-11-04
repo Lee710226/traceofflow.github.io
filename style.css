@@ -213,6 +213,3 @@ nav, .nav, header .nav {
     font-size: 1rem;
   }
 }
-git add style.css
-git commit -m "fix: responsive CSS"
-git push -u origin main
