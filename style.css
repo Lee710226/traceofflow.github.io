@@ -464,3 +464,8 @@ main > :first-child { margin-top: 0; }
 
 /* 全域歸零 body 預設外距（保險） */
 html, body { margin: 0; }
+/* 任何一條就足夠，挑你喜歡的 */
+header { padding-top: 1px; }                      /* 最簡單 */
+header { border-top: 1px solid transparent; }     /* 視覺無差 */
+header { overflow: hidden; }                      /* 開 BFC */
+header { display: flow-root; }                    /* 開 BFC，乾淨 */
