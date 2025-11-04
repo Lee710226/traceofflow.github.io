@@ -654,3 +654,28 @@ header nav ul.nav {
 html, body { margin: 0; padding: 0; }
 *, *::before, *::after { box-sizing: border-box; }
 img, video { max-width: 100%; height: auto; display: block; }
+/* ===== 解決下方圖像左右邊框問題 ===== */
+@media (max-width: 768px) {
+  /* 如果這張圖在 .section 或 .info 裡 */
+  .section img,
+  .info img,
+  .banner img,
+  .figure_2 img {
+    display: block;
+    width: 100vw !important;
+    max-width: none !important;
+    height: auto !important;
+    border-radius: 0 !important;
+    margin-inline: calc(50% - 50vw); /* 滿版技巧 */
+  }
+
+  /* 同時移除容器的左右 padding */
+  .section,
+  .info,
+  .container,
+  .wrap {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    border-radius: 0 !important;
+  }
+}
