@@ -147,3 +147,72 @@ footer {
   margin-bottom: 10px;
   color: #A2746B; 
 }
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+img, video { max-width: 100%; height: auto; display: block; }
+body { margin: 0; overflow-x: hidden; }
+
+.container, .wrap, .page, main, header, footer, section {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.hero, .banner, .kv {
+  background-size: cover;
+  background-position: center;
+}
+
+nav, .nav, header .nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+@media (max-width: 768px) {
+  html { font-size: 16px; }
+  body { line-height: 1.6; }
+
+  .nav, nav ul { 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  nav a, .nav a { 
+    display: inline-block;
+    padding: 8px 12px;
+  }
+
+  .hero h1, .banner h1, h1 { 
+    font-size: clamp(1.4rem, 4.5vw, 2rem);
+    text-align: center;
+  }
+
+  .hero p { 
+    font-size: clamp(0.95rem, 3.8vw, 1.1rem);
+    text-align: center;
+  }
+
+  .grid, .cards, .columns, .row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  section, .card, .panel {
+    padding: 16px;
+  }
+
+  .btn, button, .cta {
+    padding: 10px 16px;
+    font-size: 1rem;
+  }
+}
+git add style.css
+git commit -m "fix: responsive CSS"
+git push -u origin main
