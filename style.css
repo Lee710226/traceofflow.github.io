@@ -534,3 +534,61 @@ header nav a { display: block; padding: 8px 0; text-decoration: none; }
   }
   header nav li { width: auto; } /* 保持內容寬度 */
 }
+/* === Header滿版設定 === */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* 讓 h1 在左，nav 靠右 */
+  background-color: #B77B6B; /* 換成你的 header 色 */
+  padding: 12px 24px; /* 上下與左右內距 */
+  margin-inline: calc(50% - 50vw); /* 讓背景滿版去除左右邊框 */
+  width: 100vw;
+  box-sizing: border-box;
+}
+
+/* 標題樣式 */
+header h1 {
+  color: white;
+  margin: 0;
+  font-size: 1.5em;
+}
+
+/* nav 菜單 */
+header nav ul.nav {
+  display: flex;
+  gap: 16px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+header nav ul.nav li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  transition: opacity 0.2s ease;
+}
+
+header nav ul.nav li a:hover {
+  opacity: 0.8;
+}
+
+/* 手機直向時 — 菜單改為直排靠右 */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  header h1 {
+    align-self: flex-start;
+  }
+
+  header nav ul.nav {
+    flex-direction: column;
+    align-items: flex-end;
+    width: 100%;
+    gap: 10px;
+    margin-top: 10px;
+  }
+}
