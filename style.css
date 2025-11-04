@@ -305,3 +305,53 @@ nav, .nav, header .nav {
     overflow-x: hidden;
   }
 }
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.event img {
+  width: 120px;   /* 想要多大改這裡，可以試 150px、200px */
+  border-radius: 8px; /* 可選，讓邊角柔和一點 */
+  display: block;
+  margin: 0 auto; /* 置中 */
+}
+/* 這一區塊的基本排版 */
+.section-two-col {
+  display: grid;
+  grid-template-columns: 1fr;     /* 手機先單欄 */
+  gap: 16px;
+  align-items: center;
+  margin: 24px 0;
+}
+
+/* 圖片：放大、置中、等比 */
+.figure_1 img {
+  display: block;
+  width: clamp(140px, 40vw, 240px);  /* 手機：最小140px，最多240px，跟視窗寬度連動 */
+  height: auto;
+  border-radius: 8px;                /* 可拿掉 */
+  margin: 0 auto;                    /* 置中 */
+}
+
+/* 文字區一點基本排版 */
+.section-two-col .info h2 {
+  margin: 0 0 8px;
+  line-height: 1.3;
+}
+.section-two-col .info p {
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* 平板/桌機：改成雙欄，圖再大一點 */
+@media (min-width: 768px) {
+  .section-two-col {
+    grid-template-columns: 1fr 1.2fr; /* 左圖右文 */
+    gap: 24px;
+  }
+  .figure_1 img {
+    width: clamp(220px, 28vw, 320px); /* 桌機更大 */
+    margin: 0;                        /* 由格線對齊 */
+  }
+}
