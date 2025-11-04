@@ -356,3 +356,103 @@ img {
   }
 }
 .figure_1 img { width: clamp(140px, 40vw, 240px) !important; }
+/* 全域：盒模型與橫向溢出保險 */
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+body { margin: 0; overflow-x: hidden; }
+img, video, canvas, svg { max-width: 100%; height: auto; display: block; }
+/* 版心容器（若你有 .container / .wrap / .page 任一個就會命中） */
+.container, .wrap, .page, main {
+  max-width: 1100px;          /* 想更寬可改 1200px */
+  width: 100%;
+  margin: 0 auto;
+  padding-inline: 16px;
+}
+/* 桌機：橫向排列可換行，避免擠爆 */
+header nav, .nav, .navbar, .site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+/* 手機：改直向堆疊、滿版好點擊 */
+@media (max-width: 768px) {
+  header, .header { position: static !important; height: auto !important; }
+
+  header nav, .nav, .navbar, .site-nav {
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    left: auto !important; right: auto !important; top: auto !important;
+    float: none !important;
+    margin: 0 auto !important;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  header nav ul, .nav ul, .navbar ul, .site-nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+  header nav li, .nav li { width: 100%; }
+  header nav a, .nav a {
+    display: block;
+    padding: 12px 14px;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+  }
+}
+/* 若 hero 是 <img> */
+.hero img, .kv img, header img {
+  width: min(100%, 960px);   /* 桌機上限 960px、手機 100% */
+  height: auto;
+  margin-inline: auto;       /* 置中 */
+  display: block;
+}
+
+/* 若 hero 是背景圖（不是 <img>） */
+.hero, .kv {
+  background-size: cover;
+  background-position: center;
+}
+/* 桌機：兩欄 */
+@media (min-width: 768px) {
+  .section-two-col {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+    gap: 24px;
+    align-items: start;
+  }
+}
+
+/* 手機：單欄 */
+@media (max-width: 768px) {
+  .section-two-col {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+.event img {
+  width: clamp(120px, 40vw, 180px);  /* 手機不小於 120px，桌機不上 180px */
+  height: auto;
+  margin: 0 auto;
+  border-radius: 8px;                 /* 可選 */
+}
+figure img { width: clamp(220px, 28vw, 320px); }
+/* 臨時偵錯：把超過視窗寬度的元素畫出來 */
+* { outline: none; }
+body * {
+  outline: 0;
+}
+@supports (selector(:has(*))) {
+  body *:has(> *:where(:not(img, video))) { outline: none; }
+}
