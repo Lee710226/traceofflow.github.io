@@ -1170,3 +1170,49 @@ header > *:first-child { margin-top: 0; }
 
 /* 讓圖片一定有高度（不會被父層吃掉） */
 .figure_1 img { display:block; width:100%; height:auto; }
+/* 1) 手機/桌機共用：header 高度用變數，*加上* safe-area，body 補同樣的空間 */
+:root { --header-h: 80px; }             /* 手機 */
+@media (min-width:1024px){ :root { --header-h: 96px; } }   /* 桌機 */
+
+html, body { margin:0; overflow-x:hidden; }
+
+/* header 背景要吃到最上緣 → 直接把 safe-area 加進高度，而不是只加 padding */
+header{
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: calc(var(--header-h) + env(safe-area-inset-top));
+  padding-top: env(safe-area-inset-top);     /* 內容下移，但背景同時頂到最上 */
+  background: #1C2454;
+  z-index: 10;
+  overflow: hidden;                          /* 保險：避免 logo 外溢 */
+}
+
+/* 讓內容不被 header 蓋住（補一樣的高度） */
+body{
+  padding-top: calc(var(--header-h) + env(safe-area-inset-top));
+}
+
+/* 防 margin 折疊把 header 擠出縫隙 */
+main > *:first-child { margin-top: 0; }
+header > *:first-child { margin-top: 0; }
+
+/* 2) 任何外層殼不要露底（行動裝置常見） */
+.container, .wrap, .page, header, .hero, .kv, .banner, .card{
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+/* 3) 圖塊做滿版 + 吃掉 1px 髮絲縫（桌機才需要，可保守保留） */
+.hero, .kv, .banner, .figure_1, .full-bleed{
+  margin-left:  calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  width: 100vw;
+}
+.figure_1 img.bleed{
+  margin-left:  calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  width: 100.2vw;           /* 100%~100.2%：可吃掉 1px 白縫 */
+  max-width: 100.2vw;
+  display: block;
+}
+.figure_1 img{ display:block; width:100%; height:auto; }   /* 基本保險 */
