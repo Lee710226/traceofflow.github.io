@@ -1031,3 +1031,79 @@ html, body { overflow-x: hidden; }
 
 /* 建議保留：避免 100vw 造成水平捲軸 */
 html, body { overflow-x: hidden; }
+/* === 統一變數：header 高度（手機 / 桌機可不同）=== */
+:root { --header-h: 80px; }             /* 手機預設 80px */
+@media (min-width: 1024px) {
+  :root { --header-h: 96px; }           /* 桌機稍高一點，看你的設計 */
+}
+
+/* === 基礎：消 margin、避免橫向滾動、補 header 空間 === */
+html, body { margin: 0; }
+html, body { overflow-x: hidden; }
+body { padding-top: calc(var(--header-h) + env(safe-area-inset-top)); }
+
+/* === 固定在頂端的 header（滿版背景；內容另用 .header-inner 置中）=== */
+header{
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--header-h);
+  background: #1C2454;                  /* 深藍 */
+  z-index: 10;
+  padding-top: env(safe-area-inset-top); /* iOS 安全區 */
+  overflow: hidden;                      /* 關鍵：截掉任何超出高度的內容（Logo 不會溢出） */
+}
+
+/* === 置中容器：控制 header 內的版心寬度 === */
+.header-inner{
+  width: min(1200px, 100% - 32px);      /* 版心寬；邊界各留 16px 內距 */
+  height: 100%;
+  margin-inline: auto;                   /* 置中 */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;        /* 左 logo 右選單 */
+  gap: 16px;
+}
+
+/* === Logo：高度不超過 header，且不變形、不溢出 === */
+.brand { display: inline-flex; align-items: center; }
+.brand img{
+  display: block;
+  height: clamp(36px, 60%, calc(var(--header-h) - 16px)); /* 給彈性、預留上下內距 */
+  max-height: calc(var(--header-h) - 16px);
+  width: auto;
+  object-fit: contain;
+}
+
+/* === 導覽列：桌機橫排、右側對齊 === */
+nav .nav{
+  display: flex;
+  gap: 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+nav .nav a{
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  line-height: 1;
+  padding: 8px 4px;
+}
+
+/* === 手機：改直向、靠右或滿寬都可（此處示範靠右直排）=== */
+@media (max-width: 768px){
+  .header-inner{
+    flex-direction: column;
+    align-items: flex-end;               /* 菜單靠右 */
+    justify-content: center;
+    padding-block: 8px;                  /* 讓內容垂直置中看起來舒服 */
+  }
+  nav .nav{
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+/* 安全：避免第一個區塊的上外距把 header 擠出縫隙 */
+main > *:first-child { margin-top: 0; }
+header > *:first-child { margin-top: 0; }
