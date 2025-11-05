@@ -971,3 +971,34 @@ html, body { overflow-x: hidden; }
     box-sizing: border-box;
   }
 }
+/* 桌機專用：首屏滿版 & 拿掉 main 的左右內距 */
+@media (min-width: 1024px) {
+  /* 1) main 取消左右 padding，避免留下邊寬 */
+  main { padding-inline: 0; }
+
+  /* 2) 讓大圖區滿版（你實際用到的 class 都列進來） */
+  .hero,
+  .kv,
+  .banner,
+  .slogan,
+  .figure_1,
+  .full-bleed {                /* 你也可以在要滿版的節點加 class="full-bleed" */
+    margin-left:  calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    width: 100vw;
+    max-width: 100vw;
+  }
+
+  /* 3) 圖片要撐滿容器且不留白邊 */
+  .hero img,
+  .kv img,
+  .banner img,
+  .slogan img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* 保險：避免 full-bleed 造成橫向卷軸 */
+html, body { overflow-x: hidden; }
