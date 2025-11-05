@@ -705,7 +705,7 @@ img, video { max-width: 100%; height: auto; display: block; }
 /* Header：桌機左右排列；手機直排靠右 */
 header {
   display: flex; align-items: center; justify-content: space-between;
-  background: #B77B6B; padding: 12px 24px;
+  background: #1C2454; padding: 12px 24px;
 }
 header h1 { margin: 0; color: #fff; font-size: 1.5em; }
 header nav ul.nav { display: flex; gap: 16px; list-style: none; margin: 0; padding: 0; }
