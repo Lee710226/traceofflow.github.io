@@ -1132,3 +1132,41 @@ img { max-width: 100%; height: auto; display: block; }
     max-width: 100vw;
   }
 }
+/* 0) 基本重置 */
+* { box-sizing: border-box; }
+html, body { margin: 0; overflow-x: hidden; }
+
+/* 1) 固定在最上面，背景要覆蓋 padding（不留縫） */
+header{
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--header-h, 80px);
+  background: #1C2454;
+  z-index: 10;
+  padding-top: env(safe-area-inset-top);   /* iOS notch */
+  /* 某些瀏覽器 會出現 1px 接縫：用 3D 合成逼它對齊像素 */
+  transform: translateZ(0);
+}
+
+/* 2) 內容下移（吃到 header + 安全區），避免被蓋住 */
+body{
+  padding-top: calc(var(--header-h, 80px) + env(safe-area-inset-top));
+}
+
+/* 3) 避免第一個區塊的外距把 header 擠出縫隙 */
+main > *:first-child { margin-top: 0; }
+header > *:first-child { margin-top: 0; }
+
+/* 4) 滿版圖區：避免次像素白縫（寬度略超過 100vw） */
+.hero,
+.kv,
+.banner,
+.figure_1 img.bleed {
+  margin-inline: calc(50% - 50vw);
+  width: 100.2vw;          /* 100%→100.2%：吃掉 1px hairline */
+  max-width: 100.2vw;
+  display: block;
+}
+
+/* 讓圖片一定有高度（不會被父層吃掉） */
+.figure_1 img { display:block; width:100%; height:auto; }
