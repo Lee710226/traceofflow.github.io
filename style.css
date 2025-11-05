@@ -723,3 +723,39 @@ header nav ul.nav a { color: #fff; text-decoration: none; font-weight: 600; }
   body, main, .container, .wrap { overflow-x: hidden; overflow-y: visible; }
 }
 body { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
+/* 桌機：兩欄 */
+.section-two-col{
+  display:grid;
+  grid-template-columns: minmax(0,1fr) minmax(0,1.1fr);
+  gap:24px;
+  align-items:start;
+}
+
+/* 手機：單欄 + 讓 .figure_1 的圖片滿版貼邊 */
+@media (max-width:768px){
+  .section-two-col{
+    grid-template-columns: 1fr;
+    padding-left: 0;            /* 這段 section 自己不留左右 padding */
+    padding-right: 0;
+  }
+
+  /* 圖片外層先滿版「拉出去」 */
+  .section-two-col .figure_1{
+    margin-inline: calc(50% - 50vw);  /* 滿版技巧 */
+    width: 100vw;
+  }
+
+  /* 圖片本身跟著滿版，收掉圓角以免看起來像有邊框 */
+  .section-two-col .figure_1 img{
+    display:block;
+    width: 100vw !important;
+    max-width: none !important;
+    height:auto !important;
+    border-radius:0 !important;
+  }
+
+  /* 文字內容保留舒服的左右留白 */
+  .section-two-col .info{
+    padding-inline:16px;
+  }
+}
