@@ -1121,3 +1121,14 @@ header > *:first-child { margin-top: 0; }
   width: 100%;
   height: auto;
 }
+/* 通用圖片安全樣式 */
+img { max-width: 100%; height: auto; display: block; }
+
+/* 滿版圖的共用 class */
+@media (min-width: 1024px) {
+  .bleed {
+    margin-inline: calc(50% - 50vw);
+    width: 100vw;
+    max-width: 100vw;
+  }
+}
