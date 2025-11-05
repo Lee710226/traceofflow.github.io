@@ -841,3 +841,34 @@ header{
   top: 0; left: 0; right: 0;
   z-index: 10;
 }
+/* 桌機/手機一致：背景淺藍 */
+html, body { overflow-x: hidden; }
+body {
+  margin: 0;
+  padding-top: 80px;                 /* 固定 header 的上邊距 */
+  font-family: "Noto Sans TC", sans-serif;
+  background: #E3F2FD;               /* 淺藍底 */
+  display: block;                    /* 關鍵：不要用 flex 置中 */
+}
+
+/* 版心置中交給 main */
+main {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-inline: 16px;
+  box-sizing: border-box;
+}
+
+/* 手機調整 */
+@media (max-width: 768px) {
+  /* 這裡不要再把 body 設成 flex */
+  .container {                        /* ← 拆出來寫，瀏覽器才會吃到 */
+    background-color: transparent;    /* 或同色 #E3F2FD，看你要哪一種 */
+  }
+}
+.hero {
+  margin-inline: calc(50% - 50vw);
+  width: 100vw;
+}
+.hero img { width: 100%; height: auto; display: block; }
