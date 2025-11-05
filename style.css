@@ -781,6 +781,10 @@ main {
   body {
     justify-content: center;
     align-items: flex-start;
+    .container {
+     background-color: transparent;
+}
+
   }
 
   main {
