@@ -801,3 +801,39 @@ header {
     left: 0;
     z-index: 10;
 }
+/* 1) 還原 body，不用 flex 置中；避免與 100vw 滿版元素打架 */
+html, body { overflow-x: hidden; }  /* 防橫向捲軸 */
+body {
+  margin: 0;
+  padding-top: 80px;                 /* 給固定 header 的空間 */
+  font-family: "Noto Sans TC", sans-serif;
+  background: #E3F2FD;               /* 你的淺藍底 */
+  display: block;                    /* 關鍵：不要用 flex 置中 */
+}
+
+/* 2) 用 main 置中內容（桌機） */
+main {
+  width: 100%;
+  max-width: 1200px;                 /* 自行調整 */
+  margin: 0 auto;                    /* 水平置中 */
+  padding-inline: 16px;              /* 內距避免文字貼邊 */
+  box-sizing: border-box;
+}
+
+/* 3) 滿版 hero：在任何情況下都貼齊左右，不受 main 置中影響 */
+.hero {
+  margin-inline: calc(50% - 50vw);
+  width: 100vw;
+}
+.hero img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 4) header 固定在頂端 */
+header{
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 10;
+}
