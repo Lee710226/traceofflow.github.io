@@ -931,3 +931,22 @@ main, .container, .wrap, .page {
   margin-left: -50vw;
   margin-right: -50vw;
 }
+/* 固定在頂端的 header 滿版 + 吃到安全區 */
+header{
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 80px;                       /* 你的原本高度 */
+  background: #1C2454;                /* 深藍 */
+  z-index: 10;
+  padding-top: env(safe-area-inset-top);   /* iOS 瀏海上方也用 header 色 */
+}
+
+/* 內容下移：原本 80px 再加上安全區高度 */
+body{
+  margin: 0;
+  padding-top: calc(80px + env(safe-area-inset-top));
+  /* 其餘字體…保留 */
+}
+
+/* 如果還看到兩側邊緣，保險加上這個 */
+html, body { overflow-x: hidden; }
