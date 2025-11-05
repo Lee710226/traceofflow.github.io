@@ -950,3 +950,24 @@ body{
 
 /* 如果還看到兩側邊緣，保險加上這個 */
 html, body { overflow-x: hidden; }
+/* === 桌機版滿版背景 === */
+@media (min-width: 769px) {
+  body {
+    background-color: #E3F2FD; /* 你想要的淺藍底 */
+  }
+
+  /* hero 或主要內容滿版鋪底 */
+  .hero {
+    margin-inline: calc(50% - 50vw);
+    width: 100vw;
+    background-color: #E3F2FD; /* 保險再給一次底色 */
+  }
+
+  /* 主要內容仍置中，避免文字貼邊 */
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-inline: 16px;
+    box-sizing: border-box;
+  }
+}
