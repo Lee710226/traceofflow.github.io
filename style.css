@@ -789,3 +789,15 @@ main {
     margin: 0 auto; /* 置中 */
   }
 }
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    width: 100%;
+    background-color: #1C2454;
+    position: fixed; /* 固定在上方，讓導覽列不會被滾走 */
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
