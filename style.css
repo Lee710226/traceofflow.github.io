@@ -1216,3 +1216,27 @@ header > *:first-child { margin-top: 0; }
   display: block;
 }
 .figure_1 img{ display:block; width:100%; height:auto; }   /* 基本保險 */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  /* ✅ 高度要包含安全區 */
+  height: calc(var(--header-h) + env(safe-area-inset-top));
+  padding-top: env(safe-area-inset-top);
+  background: #1C2454;  /* 深藍 */
+  z-index: 10;
+  overflow: hidden; /* 防 logo 外溢 */
+}
+body {
+  margin: 0;
+  padding-top: calc(var(--header-h) + env(safe-area-inset-top));
+  overflow-x: hidden;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+}
+html {
+  background: #1C2454;
+}
