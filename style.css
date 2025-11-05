@@ -679,3 +679,46 @@ img, video { max-width: 100%; height: auto; display: block; }
     border-radius: 0 !important;
   }
 }
+/* 基本：不要出現水平捲軸、全站底色一致 */
+html, body { margin: 0; padding: 0; background: #F6DDD3; }
+*, *::before, *::after { box-sizing: border-box; }
+img, video { max-width: 100%; height: auto; display: block; }
+
+/* 統一容器（正文）寬度與左右留白 */
+:root { --gutter: 16px; }              /* 手機兩側留白 */
+.container, main, .wrap, .section {
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+}
+
+/* ✅ 滿版工具：讓區塊貼到螢幕左右邊（不吃容器 padding） */
+.full-bleed {
+  margin-inline: calc(50% - 50vw);
+  width: 100vw;
+  max-width: 100vw;
+  border-radius: 0 !important;
+}
+.full-bleed > img { width: 100%; height: auto; display: block; border-radius: 0 !important; }
+
+/* Header：桌機左右排列；手機直排靠右 */
+header {
+  display: flex; align-items: center; justify-content: space-between;
+  background: #B77B6B; padding: 12px 24px;
+}
+header h1 { margin: 0; color: #fff; font-size: 1.5em; }
+header nav ul.nav { display: flex; gap: 16px; list-style: none; margin: 0; padding: 0; }
+header nav ul.nav a { color: #fff; text-decoration: none; font-weight: 600; }
+
+@media (max-width: 768px) {
+  /* 手機：header 滿版＋菜單靠右直排 */
+  header { flex-direction: column; align-items: flex-end; }
+  header h1 { align-self: flex-start; }
+  header nav { width: 100%; }
+  header nav ul.nav { flex-direction: column; align-items: flex-end; gap: 10px; }
+
+  /* 手機：避免容器的圓角/陰影露出底色 */
+  .container, .wrap, .section, .card, .panel { border-radius: 0 !important; }
+  body, main, .container, .wrap { overflow-x: hidden; overflow-y: visible; }
+}
