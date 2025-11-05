@@ -872,3 +872,33 @@ main {
   width: 100vw;
 }
 .hero img { width: 100%; height: auto; display: block; }
+/* ---- 強制全站底色一致（放在檔案最後） ---- */
+html, body { overflow-x: hidden; }
+
+body {
+  margin: 0;
+  padding-top: 80px;                     /* 給 fixed header 空間 */
+  font-family: "Noto Sans TC", sans-serif;
+  background: #E3F2FD !important;        /* 淺藍底，強制生效 */
+  display: block;                        /* 不要用 flex 置中，避免 100vw 元素被切半 */
+}
+
+/* 版心（桌機置中） */
+main {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-inline: 16px;
+  box-sizing: border-box;
+}
+
+/* 手機：不要再改 body 的 display；只改需要的區塊 */
+@media (max-width: 768px) {
+  .container, .wrap, .page {            /* 你頁面用到的包覆容器都列進來 */
+    background: transparent !important; /* 避免容器自己上粉色把底蓋掉 */
+  }
+}
+
+/* hero 滿版不露邊 */
+.hero { margin-inline: calc(50% - 50vw); width: 100vw; }
+.hero img { width: 100%; height: auto; display: block; }
