@@ -759,3 +759,33 @@ body { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-ins
     padding-inline:16px;
   }
 }
+/* === 全域設定 === */
+body {
+  margin: 0;
+  padding-top: 80px;
+  font-family: "Noto Sans TC", sans-serif;
+  background-color: #E3F2FD; /* 淺藍底色 */
+  display: flex;
+  justify-content: center;  /* 水平置中主內容 */
+}
+
+/* === 主要內容區 === */
+main {
+  width: 100%;
+  max-width: 1200px; /* 桌機最大寬度 */
+  background-color: #E3F2FD;
+}
+
+/* === 手機調整 === */
+@media (max-width: 768px) {
+  body {
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  main {
+    width: 100%;
+    padding: 0;
+    margin: 0 auto; /* 置中 */
+  }
+}
