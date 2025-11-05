@@ -902,3 +902,32 @@ main {
 /* hero 滿版不露邊 */
 .hero { margin-inline: calc(50% - 50vw); width: 100vw; }
 .hero img { width: 100%; height: auto; display: block; }
+/* === 修正手機邊緣淺藍邊 === */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #1C2454; /* 深藍底 */
+  overflow-x: hidden; /* 防止水平滾動產生邊緣空白 */
+}
+
+/* 讓內容容器也跟著貼滿畫面 */
+main, .container, .wrap, .page {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* hero 區塊（如果有背景圖片或圖像）強制全滿 */
+.hero {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
